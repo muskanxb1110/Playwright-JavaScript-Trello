@@ -1,0 +1,5 @@
+export const loginButtonInitial = "text=Log in"
+export const usernameField = "[data-testid='username']"
+export const passwordField = "[data-testid='password']"
+export const continueButton = "[data-testid='login-submit-idf-testid']"
+export const loginButton = "[data-testid='login-submit-idf-testid']"
