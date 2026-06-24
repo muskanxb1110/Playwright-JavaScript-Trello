@@ -15,8 +15,6 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
     - name: Run Playwright API tests
       run: npx playwright test TC_05_apiCreateBoard.test.js TC_06_apiCreateList.test.js TC_07_apiCreateCard.test.js --project=chromium
       env:
