@@ -1,5 +1,7 @@
 # Trello Playwright Automation Framework
 
+![Playwright Tests](https://github.com/muskanxb1110/Playwright-JavaScript-Trello/actions/workflows/playwright.yml/badge.svg)
+
 ## Description
 This repository contains an end-to-end test automation framework built with Playwright and JavaScript, testing real-world Trello scenarios including user authentication, board management, list creation, and card creation.
 
