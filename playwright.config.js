@@ -1,4 +1,7 @@
 import { defineConfig, devices } from '@playwright/test'
+import fs from 'fs'
+
+const authFile = fs.existsSync('./auth.json') ? 'auth.json' : undefined
 
 export default defineConfig({
   testDir: './tests',
@@ -10,7 +13,7 @@ export default defineConfig({
     headless: false,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    storageState: 'auth.json'
+    storageState: authFile
   },
   projects: [
     {
