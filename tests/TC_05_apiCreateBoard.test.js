@@ -1,6 +1,14 @@
 import { test, expect } from '@playwright/test'
 import fs from 'fs'
-const testData = JSON.parse(fs.readFileSync('./data/users.json', 'utf-8'))
+
+let testData = {}
+if (fs.existsSync('./data/users.json')) {
+    testData = JSON.parse(fs.readFileSync('./data/users.json', 'utf-8'))
+}
+
+const apiKey = testData.apiKey || process.env.TRELLO_API_KEY
+const apiToken = testData.apiToken || process.env.TRELLO_API_TOKEN
+const boardTitle = testData.boardTitle || 'Test Board'
 
 test.describe('@regression: Create Board with API', () => {
     
@@ -9,21 +17,21 @@ test.describe('@regression: Create Board with API', () => {
         // create the test board
         const createResponse = await request.post('https://api.trello.com/1/boards', {
             params: {
-                name: testData.boardTitle,
-                key: testData.apiKey,
-                token: testData.apiToken
+                name: boardTitle,
+                key: apiKey,
+                token: apiToken
             }
         })
 
         expect(createResponse.status()).toBe(200);
         const board = await createResponse.json();
-        expect(board.name).toBe(testData.boardTitle);
+        expect(board.name).toBe(boardTitle);
 
         // delete the test board
         const deleteResponse = await request.delete(`https://api.trello.com/1/boards/${board.id}`, {
             params: {
-                key: testData.apiKey,
-                token: testData.apiToken
+                key: apiKey,
+                token: apiToken
             }
         })
         expect(deleteResponse.status()).toBe(200);
